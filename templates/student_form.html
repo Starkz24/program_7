@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Add Student</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+<h2>Student List</h2>
+
+<table border="1">
+<tr>
+<th>Name</th>
+<th>USN</th>
+<th>Semester</th>
+<th>Fee Paid</th>
+</tr>
+
+{% for s in students %}
+<tr>
+<td>{{ s.name }}</td>
+<td>{{ s.usn }}</td>
+<td>{{ s.semester }}</td>
+<td>{{ s.fee_paid }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<form method="POST" action="/delete/">
+{% csrf_token %}
+<button type="submit">Delete Unpaid Students</button>
+</form>
+
+</body>
+</html>
